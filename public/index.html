@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090e1b">
+    <meta name="description" content="Explore horizontal, vertical and hybrid scaling in an interactive infrastructure simulator.">
+    <title>ScaleLab | Infrastructure Control Center</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/" aria-label="ScaleLab home">
+            <span class="brand-icon">S</span>
+            <span>Scale<span class="brand-accent">Lab</span></span>
+        </a>
+
+        <div class="topbar-right">
+            <span class="environment"><span class="pulse-dot"></span> LOCAL SIMULATION</span>
+            <span class="version-label">ENGINE v1.0</span>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> INFRASTRUCTURE CONTROL CENTER</p>
+                <h1>Capacity that adapts.<br><span>Performance that scales.</span></h1>
+                <p class="hero-description">
+                    Shape your workload, explore scaling strategies, and watch your
+                    simulated infrastructure react in real time.
+                </p>
+            </div>
+
+            <div class="hero-status">
+                <span class="status-orb"></span>
+                <div>
+                    <strong id="systemStatus">SYSTEM READY</strong>
+                    <span>All simulation controls available</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="control-layout">
+            <article class="panel traffic-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">01 / WORKLOAD</p>
+                        <h2>Traffic control</h2>
+                    </div>
+                    <span class="panel-icon">↗</span>
+                </div>
+
+                <div class="traffic-readout">
+                    <div>
+                        <span class="field-label">Incoming traffic</span>
+                        <div class="traffic-number"><span id="loadValue">1,500</span><small>req/s</small></div>
+                    </div>
+                    <span id="trafficBadge" class="state-badge">NORMAL LOAD</span>
+                </div>
+
+                <label class="field-label" for="load">Adjust request volume</label>
+                <input id="load" type="range" min="0" max="5000" step="100" value="1500">
+
+                <div class="range-labels">
+                    <span>0 req/s</span>
+                    <span>5,000 req/s</span>
+                </div>
+
+                <div class="preset-row">
+                    <button class="preset-btn" data-load="250" type="button">Low</button>
+                    <button class="preset-btn" data-load="1500" type="button">Normal</button>
+                    <button class="preset-btn" data-load="3000" type="button">High</button>
+                    <button class="preset-btn" data-load="5000" type="button">Extreme</button>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <label class="field-label" for="mode">Scaling strategy</label>
+                <select id="mode">
+                    <option value="horizontal">Horizontal · Add or remove instances</option>
+                    <option value="vertical">Vertical · Upgrade CPU and RAM</option>
+                    <option value="hybrid">Hybrid · Combine both strategies</option>
+                </select>
+
+                <div id="modeDescription" class="mode-description">
+                    <span class="mode-symbol">↔</span>
+                    <span>Add instances when the current fleet cannot handle the incoming workload.</span>
+                </div>
+
+                <button id="runBtn" class="primary-btn" type="button">
+                    <span id="runBtnText">Run simulation</span>
+                    <span class="button-arrow">↗</span>
+                </button>
+
+                <p id="message" class="message" role="status" aria-live="polite">
+                    Ready to simulate. Adjust traffic and run a scenario.
+                </p>
+            </article>
+
+            <article class="panel capacity-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">02 / CAPACITY</p>
+                        <h2>Performance overview</h2>
+                    </div>
+                    <span class="live-indicator"><span class="pulse-dot"></span> LIVE RESULT</span>
+                </div>
+
+                <div class="capacity-gauge">
+                    <div class="gauge-copy">
+                        <span class="field-label">Capacity utilization</span>
+                        <strong id="utilization">—<small>%</small></strong>
+                        <span id="utilizationState" class="utilization-state">Awaiting simulation</span>
+                    </div>
+                    <div class="gauge-visual" id="gaugeVisual" role="img" aria-label="Capacity utilization gauge">
+                        <div class="gauge-ring">
+                            <div class="gauge-inner">
+                                <span id="gaugeValue">—%</span>
+                                <small>UTILIZED</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="utilization-track">
+                    <div id="progress" class="utilization-fill"></div>
+                    <div class="capacity-marker" title="100% capacity"></div>
+                </div>
+
+                <div class="utilization-legend">
+                    <span><i class="legend-dot healthy"></i> Available capacity</span>
+                    <span><i class="legend-dot overloaded"></i> Overload</span>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <span class="metric-icon">▦</span>
+                        <span class="metric-label">Active instances</span>
+                        <strong id="instances">—</strong>
+                        <small id="instanceMeta">Simulated replicas</small>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">⌘</span>
+                        <span class="metric-label">CPU / instance</span>
+                        <strong id="cpu">—</strong>
+                        <small>Allocated cores</small>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">▤</span>
+                        <span class="metric-label">RAM / instance</span>
+                        <strong id="ram">—</strong>
+                        <small>Allocated memory</small>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-icon">⇧</span>
+                        <span class="metric-label">Total capacity</span>
+                        <strong id="capacity">—</strong>
+                        <small>Requests per second</small>
+                    </div>
+                </div>
+
+                <div id="overloadAlert" class="overload-alert" hidden>
+                    <span class="alert-icon">!</span>
+                    <div>
+                        <strong>Capacity limit reached</strong>
+                        <p id="overloadText">Some incoming requests exceed the simulated capacity.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel infrastructure-panel">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">03 / INFRASTRUCTURE</p>
+                    <h2>Instance fleet</h2>
+                    <p class="section-subtitle">A visual representation of the simulated application instances.</p>
+                </div>
+                <div class="fleet-summary">
+                    <span class="fleet-dot"></span>
+                    <strong id="fleetCount">— instances</strong>
+                </div>
+            </div>
+
+            <div class="fleet-legend">
+                <span><i class="legend-dot healthy"></i> Healthy</span>
+                <span><i class="legend-dot warning"></i> High utilization</span>
+                <span><i class="legend-dot overloaded"></i> Overloaded system</span>
+            </div>
+
+            <div id="instanceGrid" class="instance-grid">
+                <div class="empty-state">Run a simulation to visualize your instance fleet.</div>
+            </div>
+
+            <div class="fleet-footer">
+                <span id="fleetFooterText">Waiting for first simulation</span>
+                <span class="simulation-tag">SIMULATED INFRASTRUCTURE</span>
+            </div>
+        </section>
+
+        <section class="analytics-grid">
+            <article class="panel chart-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">04 / WORKLOAD ANALYTICS</p>
+                        <h2>Traffic vs. capacity</h2>
+                    </div>
+                    <span class="chart-unit">REQ / SEC</span>
+                </div>
+
+                <div class="chart-legend">
+                    <span><i class="chart-line traffic-line"></i> Incoming traffic</span>
+                    <span><i class="chart-line capacity-line"></i> Available capacity</span>
+                </div>
+
+                <div class="chart-wrap">
+                    <svg id="trafficChart" viewBox="0 0 640 230" role="img" aria-label="Traffic and capacity history chart">
+                        <text x="320" y="115" text-anchor="middle" fill="#8290aa" font-size="13">
+                            Run simulations to build your chart
+                        </text>
+                    </svg>
+                </div>
+                <p class="chart-caption">History of simulation runs, not live production telemetry.</p>
+            </article>
+
+            <article class="panel events-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">05 / ACTIVITY</p>
+                        <h2>Scaling events</h2>
+                    </div>
+                    <span id="eventCount" class="event-count">0 EVENTS</span>
+                </div>
+
+                <div id="eventLog" class="event-log">
+                    <div class="empty-state">Your scaling decisions will appear here.</div>
+                </div>
+                <button id="clearEvents" class="secondary-btn" type="button">Clear event history</button>
+            </article>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-brand">Scale<span>Lab</span></div>
+            <p>Interactive auto-scaling education lab</p>
+            <p class="footer-note">All infrastructure is simulated. No real servers are provisioned.</p>
+        </footer>
+    </main>
+
+    <script src="/app.js"></script>
+</body>
+</html>
