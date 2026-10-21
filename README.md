@@ -12,41 +12,51 @@ ScaleLab is a web-based project that demonstrates how applications can respond t
 
 ## 📸 Project Screenshots
 
-Add your screenshots to the `screenshots/` directory and update the image paths below.
-
 ### 1. Dashboard Overview
 
-![ScaleLab Dashboard](screenshots/dashboard.png)
+<img width="1891" height="427" alt="image" src="https://github.com/user-attachments/assets/35916a0e-9719-4e28-8db6-99c315e58ea5" />
+<img width="1762" height="780" alt="image" src="https://github.com/user-attachments/assets/adabdb45-0dec-4eec-afd2-e41e732ebd08" />
+<img width="1753" height="807" alt="image" src="https://github.com/user-attachments/assets/2143cb14-19fd-4d3b-98e5-07bbf49b2e26" />
+<img width="1781" height="740" alt="image" src="https://github.com/user-attachments/assets/62c72318-3a1d-43b6-83cb-823ed17be75e" />
+
 
 *The main dashboard for configuring workloads and observing scaling behavior.*
 
 ### 2. Scaling Strategies
+VERTICAL SCALING :
+<img width="1913" height="910" alt="image" src="https://github.com/user-attachments/assets/44a0d2a0-7b08-481f-8072-459f7e445df1" />
+<img width="1747" height="555" alt="image" src="https://github.com/user-attachments/assets/4079be60-4b08-4203-9b68-14cd39026aaa" />
+<img width="1783" height="737" alt="image" src="https://github.com/user-attachments/assets/09189cae-0a75-4f42-bde0-9e3a65d18be4" />
 
-![Scaling Strategies](screenshots/scaling-strategies.png)
+HORIZONTAL SCALING :
+<img width="1861" height="971" alt="image" src="https://github.com/user-attachments/assets/ff7f850c-1486-48c7-b9c5-aaa14eaacb61" />
+<img width="1760" height="825" alt="image" src="https://github.com/user-attachments/assets/e7e28ac7-eff7-4f60-a56b-de21674788e7" />
+<img width="1856" height="997" alt="image" src="https://github.com/user-attachments/assets/8359328d-308d-4cd9-b05b-1df370becf08" />
+
 
 *Comparison of horizontal, vertical, and hybrid scaling strategies.*
 
 ### 3. Workload Simulation and Metrics
 
-![Simulation Results](screenshots/simulation-results.png)
+<img width="1065" height="872" alt="image" src="https://github.com/user-attachments/assets/99581edc-0bcf-41ba-acd7-9c4842205ddd" />
 
 *Simulated resource allocation, capacity, CPU, and workload metrics.*
 
 ### 4. REST API Response
 
-![API Response](screenshots/api-response.png)
+<img width="1917" height="1130" alt="image" src="https://github.com/user-attachments/assets/3a0025d9-6cca-4dda-b42d-54781f33ca12" />
 
 *Example response from the scaling API.*
 
 ### 5. Automated Testing
 
-![Automated Tests](screenshots/tests.png)
+<img width="1917" height="1140" alt="image" src="https://github.com/user-attachments/assets/8249e4cb-5dbe-4be5-9204-f5829c798687" />
 
 *Automated test execution using Node.js's built-in test runner.*
 
 ### 6. CI/CD Pipeline
 
-![GitHub Actions Pipeline](screenshots/github-actions.png)
+<img width="1897" height="1001" alt="image" src="https://github.com/user-attachments/assets/fd9f1ea1-12d7-44c7-a27a-435471677970" />
 
 *GitHub Actions workflow for dependency installation, testing, and Docker image building.*
 
